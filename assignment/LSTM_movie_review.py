@@ -35,22 +35,22 @@ class Config:
     """프로젝트 전체에서 사용할 설정값을 저장하는 클래스입니다."""
 
     # NSMC 데이터 파일 경로 (수정: IMDB → NSMC)
-    train_data_path: str = "ratings_train.txt"
-    test_data_path: str = "ratings_test.txt"
+    train_data_path: str    = "ratings_train.txt"
+    test_data_path: str     = "ratings_test.txt"
 
-    max_len: int = 200
-    max_vocab_size: int = 20000
-    min_freq: int = 2
-    batch_size: int = 64
-    embedding_dim: int = 128
-    hidden_dim: int = 128
-    num_layers: int = 1
-    dropout: float = 0.3
-    learning_rate: float = 0.001
-    max_epochs: int = 3
-    val_ratio: float = 0.2
-    num_workers: int = 0
-    seed: int = 42
+    max_len: int            = 200
+    max_vocab_size: int     = 20000
+    min_freq: int           = 2
+    batch_size: int         = 64
+    embedding_dim: int      = 128
+    hidden_dim: int         = 128
+    num_layers: int         = 1
+    dropout: float          = 0.3
+    learning_rate: float    = 0.001
+    max_epochs: int         = 3
+    val_ratio: float        = 0.2
+    num_workers: int        = 0
+    seed: int               = 42
 
 
 # ---------------------------------------------------------------------
@@ -98,12 +98,16 @@ def load_data(config: Config) -> Tuple[List[Tuple[str, int]], List[Tuple[str, in
             for idx, line in enumerate(f):
                 if idx == 0:
                     continue
+
                 parts = line.strip().split('\t')
+                
                 if len(parts) == 3:
                     _, text, label = parts
                     train_samples.append((text, int(label)))
+                
                 if idx % 10000 == 0 and idx > 0:
                     print(f"  훈련 데이터: {idx}개 로드됨...")
+
     except Exception as e:
         print(f"[경고] 훈련 데이터 로드 실패: {e}")
         return [], []
@@ -114,12 +118,16 @@ def load_data(config: Config) -> Tuple[List[Tuple[str, int]], List[Tuple[str, in
             for idx, line in enumerate(f):
                 if idx == 0:
                     continue
+
                 parts = line.strip().split('\t')
+                
                 if len(parts) == 3:
                     _, text, label = parts
                     test_samples.append((text, int(label)))
+                
                 if idx % 10000 == 0 and idx > 0:
                     print(f"  테스트 데이터: {idx}개 로드됨...")
+                    
     except Exception as e:
         print(f"[경고] 테스트 데이터 로드 실패: {e}")
         return [], []
