@@ -14,6 +14,10 @@ from collections import Counter
 from dataclasses import dataclass
 from typing import Dict, List, Tuple
 
+# VS Code 실행 시 작업 디렉토리가 프로젝트 루트로 설정되어 상대 경로로 파일을 찾지 못하는 문제 해결
+# 스크립트 파일 위치 기준으로 절대 경로를 계산해 Config 데이터 경로에 사용
+_SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+
 # ---------------------------------------------------------------------
 # 2. 딥러닝 라이브러리 불러오기
 # ---------------------------------------------------------------------
@@ -35,8 +39,8 @@ class Config:
     """프로젝트 전체에서 사용할 설정값을 저장하는 클래스입니다."""
 
     # NSMC 데이터 파일 경로 (수정: IMDB → NSMC)
-    train_data_path: str    = "ratings_train.txt"
-    test_data_path: str     = "ratings_test.txt"
+    train_data_path: str    = os.path.join(_SCRIPT_DIR, "ratings_train.txt")
+    test_data_path: str     = os.path.join(_SCRIPT_DIR, "ratings_test.txt")
 
     max_len: int            = 200
     max_vocab_size: int     = 20000

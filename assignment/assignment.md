@@ -18,7 +18,6 @@
 3. 네이버 영화 리뷰 데이터로 감성 분석 모델로 수정해서 학습 및 평가하고 실행 완료함
 4. 브렌치에서 작업한 내용을 github repository 로 commit -m 'message' > push
     git commit -m 'LSTM 네이버 영화 리뷰 감성 분석 모델 추가'
-    git push origin team_01 (또는 git switch team_01)
-    브랜치 삭제 : git branch -D 브랜치명
+    git push origin team_01 (또는 git switch team_01 => git push) (브랜치 삭제 : git branch -D 브랜치명)
 5. github repository 의 branch 이름 선택 > push 한 정보 확인
 6. 
